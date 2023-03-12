@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sso-frontend-sk-chen
+  labels:
+    name: assignment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      component: sso
+      student: sk-chen
+  template:
+    metadata:
+      labels:
+        component: sso
+        student: sk-chen
+    spec:
+      containers:
+        - name: static
+          image: ensaas/sso-frontend:v1.0.0
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+              ephemeral-storage: 32Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
